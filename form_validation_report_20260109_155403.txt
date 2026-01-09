@@ -1,0 +1,511 @@
+================================================================================
+FORM VALIDATION TEST REPORT
+================================================================================
+Website URL: http://localhost:8080
+Test Date: 2026-01-09 15:54:03
+Total Tests: 48
+Passed: 17 (35.42%)
+Failed: 31 (64.58%)
+
+Fields Tested:
+  ✓ NAME
+  ✓ AGE
+  ✓ EMAIL
+  ✓ PASSWORD
+  ✓ CONFIRM_PASSWORD
+  ✓ DOB
+  ✓ GENDER
+  ✓ ADDRESS
+  ✓ COUNTRY
+  ✓ PHONE
+  ✓ OTP
+================================================================================
+
+EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
+✗ CRITICAL: 31 vulnerabilities found!
+  The form accepts invalid data for the following fields:
+  - NAME: Alphanumeric Name
+  - NAME: Name with Special Characters
+  - NAME: Empty Name
+  - AGE: Underage
+  - AGE: Invalid High Age
+  - AGE: Negative Age
+  - AGE: Zero Age
+  - AGE: Empty Age
+  - EMAIL: Empty Email
+  - PASSWORD: Weak Password
+  - PASSWORD: Short Password
+  - PASSWORD: Very Long Password
+  - PASSWORD: Empty Password
+  - CONFIRM_PASSWORD: Non-matching Password
+  - CONFIRM_PASSWORD: Empty Confirm Password
+  - CONFIRM_PASSWORD: Almost Matching Password
+  - DOB: Invalid Format DOB
+  - DOB: Underage DOB
+  - DOB: Very Old DOB
+  - DOB: Future DOB
+  - DOB: Empty DOB
+  - ADDRESS: Empty Address
+  - PHONE: Short Phone
+  - PHONE: Long Phone
+  - PHONE: Empty Phone
+  - OTP: Short OTP
+  - OTP: Long OTP
+  - OTP: Alphabetic OTP
+  - OTP: Alphanumeric OTP
+  - OTP: Special Characters OTP
+  - OTP: Empty OTP
+
+DETAILED TEST RESULTS
+--------------------------------------------------------------------------------
+
+
+NAME FIELD TESTS
+--------------------------------------------------------------------------------
+
+PASS ✓ | Test: Valid Name
+   Input: abhijeet
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+PASS ✓ | Test: Name with Space
+   Input: Abhijeet Sahoo
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+FAIL ✗ | Test: Alphanumeric Name
+   Input: abhijeet123
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Name with Special Characters
+   Input: abhijeet!@#
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Empty Name
+   Input: [EMPTY]
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+AGE FIELD TESTS
+--------------------------------------------------------------------------------
+
+PASS ✓ | Test: Valid Adult Age
+   Input: 25
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+FAIL ✗ | Test: Underage
+   Input: 15
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Invalid High Age
+   Input: 150
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Negative Age
+   Input: -5
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Zero Age
+   Input: 0
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+PASS ✓ | Test: Alphabetic Age
+   Input: twenty
+   Expected: INVALID | Actual: REJECTED
+   Status: Expected: INVALID | Actual: REJECTED
+
+FAIL ✗ | Test: Empty Age
+   Input: [EMPTY]
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+EMAIL FIELD TESTS
+--------------------------------------------------------------------------------
+
+PASS ✓ | Test: Valid Email
+   Input: abhijeetsahoo2452004@gmail.com
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+PASS ✓ | Test: Invalid Email (no @)
+   Input: invalidemail.com
+   Expected: INVALID | Actual: REJECTED
+   Status: Expected: INVALID | Actual: REJECTED
+
+PASS ✓ | Test: Invalid Email (incomplete)
+   Input: test@
+   Expected: INVALID | Actual: REJECTED
+   Status: Expected: INVALID | Actual: REJECTED
+
+PASS ✓ | Test: Invalid Email (no username)
+   Input: @gmail.com
+   Expected: INVALID | Actual: REJECTED
+   Status: Expected: INVALID | Actual: REJECTED
+
+FAIL ✗ | Test: Empty Email
+   Input: [EMPTY]
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+PASSWORD FIELD TESTS
+--------------------------------------------------------------------------------
+
+PASS ✓ | Test: Strong Password
+   Input: Str0ngP@ssw0rd!23
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+FAIL ✗ | Test: Weak Password
+   Input: 12345678
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Short Password
+   Input: 123
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Very Long Password
+   Input: 1234546789012345678901234567890
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Empty Password
+   Input: [EMPTY]
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+CONFIRM_PASSWORD FIELD TESTS
+--------------------------------------------------------------------------------
+
+PASS ✓ | Test: Matching Password
+   Input: Str0ngP@ssw0rd!23
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+FAIL ✗ | Test: Non-matching Password
+   Input: DifferentPass123!
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Empty Confirm Password
+   Input: [EMPTY]
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Almost Matching Password
+   Input: Str0ngP@ssw0rd!2
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+DOB FIELD TESTS
+--------------------------------------------------------------------------------
+
+PASS ✓ | Test: Valid DOB
+   Input: 2000-05-15
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+PASS ✓ | Test: Adult DOB
+   Input: 2000-01-01
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+FAIL ✗ | Test: Invalid Format DOB
+   Input: 15-05-2000
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Underage DOB
+   Input: 2012-01-01
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Very Old DOB
+   Input: 1875-01-01
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Future DOB
+   Input: 2027-01-01
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Empty DOB
+   Input: [EMPTY]
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+ADDRESS FIELD TESTS
+--------------------------------------------------------------------------------
+
+PASS ✓ | Test: Valid Address
+   Input: 123 Main Street, Bangalore
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+FAIL ✗ | Test: Empty Address
+   Input: [EMPTY]
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+PHONE FIELD TESTS
+--------------------------------------------------------------------------------
+
+PASS ✓ | Test: Valid Phone
+   Input: 9876543210
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+PASS ✓ | Test: Alphanumeric Phone
+   Input: 12345abcde
+   Expected: INVALID | Actual: REJECTED
+   Status: Expected: INVALID | Actual: REJECTED
+
+FAIL ✗ | Test: Short Phone
+   Input: 12345
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Long Phone
+   Input: 12345678901234567890
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+PASS ✓ | Test: Phone with Special Chars
+   Input: 98765-43210
+   Expected: INVALID | Actual: REJECTED
+   Status: Expected: INVALID | Actual: REJECTED
+
+FAIL ✗ | Test: Empty Phone
+   Input: [EMPTY]
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+OTP FIELD TESTS
+--------------------------------------------------------------------------------
+
+PASS ✓ | Test: Valid 6-digit OTP
+   Input: 123456
+   Expected: VALID | Actual: ACCEPTED
+   Status: Expected: VALID | Actual: ACCEPTED
+
+FAIL ✗ | Test: Short OTP
+   Input: 123
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Long OTP
+   Input: 1234567
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Alphabetic OTP
+   Input: abcdef
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Alphanumeric OTP
+   Input: a1b2c3
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Special Characters OTP
+   Input: !@#$%^
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+FAIL ✗ | Test: Empty OTP
+   Input: [EMPTY]
+   Expected: INVALID | Actual: ACCEPTED
+   Status: Expected: INVALID | Actual: ACCEPTED (Vulnerability!)
+
+================================================================================
+SECURITY VULNERABILITIES
+================================================================================
+
+Vulnerability #1:
+  Field: NAME
+  Issue: Alphanumeric Name
+  Invalid Input Accepted: abhijeet123
+
+Vulnerability #2:
+  Field: NAME
+  Issue: Name with Special Characters
+  Invalid Input Accepted: abhijeet!@#
+
+Vulnerability #3:
+  Field: NAME
+  Issue: Empty Name
+  Invalid Input Accepted: 
+
+Vulnerability #4:
+  Field: AGE
+  Issue: Underage
+  Invalid Input Accepted: 15
+
+Vulnerability #5:
+  Field: AGE
+  Issue: Invalid High Age
+  Invalid Input Accepted: 150
+
+Vulnerability #6:
+  Field: AGE
+  Issue: Negative Age
+  Invalid Input Accepted: -5
+
+Vulnerability #7:
+  Field: AGE
+  Issue: Zero Age
+  Invalid Input Accepted: 0
+
+Vulnerability #8:
+  Field: AGE
+  Issue: Empty Age
+  Invalid Input Accepted: 
+
+Vulnerability #9:
+  Field: EMAIL
+  Issue: Empty Email
+  Invalid Input Accepted: 
+
+Vulnerability #10:
+  Field: PASSWORD
+  Issue: Weak Password
+  Invalid Input Accepted: 12345678
+
+Vulnerability #11:
+  Field: PASSWORD
+  Issue: Short Password
+  Invalid Input Accepted: 123
+
+Vulnerability #12:
+  Field: PASSWORD
+  Issue: Very Long Password
+  Invalid Input Accepted: 1234546789012345678901234567890
+
+Vulnerability #13:
+  Field: PASSWORD
+  Issue: Empty Password
+  Invalid Input Accepted: 
+
+Vulnerability #14:
+  Field: CONFIRM_PASSWORD
+  Issue: Non-matching Password
+  Invalid Input Accepted: DifferentPass123!
+
+Vulnerability #15:
+  Field: CONFIRM_PASSWORD
+  Issue: Empty Confirm Password
+  Invalid Input Accepted: 
+
+Vulnerability #16:
+  Field: CONFIRM_PASSWORD
+  Issue: Almost Matching Password
+  Invalid Input Accepted: Str0ngP@ssw0rd!2
+
+Vulnerability #17:
+  Field: DOB
+  Issue: Invalid Format DOB
+  Invalid Input Accepted: 15-05-2000
+
+Vulnerability #18:
+  Field: DOB
+  Issue: Underage DOB
+  Invalid Input Accepted: 2012-01-01
+
+Vulnerability #19:
+  Field: DOB
+  Issue: Very Old DOB
+  Invalid Input Accepted: 1875-01-01
+
+Vulnerability #20:
+  Field: DOB
+  Issue: Future DOB
+  Invalid Input Accepted: 2027-01-01
+
+Vulnerability #21:
+  Field: DOB
+  Issue: Empty DOB
+  Invalid Input Accepted: 
+
+Vulnerability #22:
+  Field: ADDRESS
+  Issue: Empty Address
+  Invalid Input Accepted: 
+
+Vulnerability #23:
+  Field: PHONE
+  Issue: Short Phone
+  Invalid Input Accepted: 12345
+
+Vulnerability #24:
+  Field: PHONE
+  Issue: Long Phone
+  Invalid Input Accepted: 12345678901234567890
+
+Vulnerability #25:
+  Field: PHONE
+  Issue: Empty Phone
+  Invalid Input Accepted: 
+
+Vulnerability #26:
+  Field: OTP
+  Issue: Short OTP
+  Invalid Input Accepted: 123
+
+Vulnerability #27:
+  Field: OTP
+  Issue: Long OTP
+  Invalid Input Accepted: 1234567
+
+Vulnerability #28:
+  Field: OTP
+  Issue: Alphabetic OTP
+  Invalid Input Accepted: abcdef
+
+Vulnerability #29:
+  Field: OTP
+  Issue: Alphanumeric OTP
+  Invalid Input Accepted: a1b2c3
+
+Vulnerability #30:
+  Field: OTP
+  Issue: Special Characters OTP
+  Invalid Input Accepted: !@#$%^
+
+Vulnerability #31:
+  Field: OTP
+  Issue: Empty OTP
+  Invalid Input Accepted: 
+
+================================================================================
+RECOMMENDATIONS
+================================================================================
+- EMAIL: Implement proper email format validation (RFC 5322)
+- NAME: Make field required (cannot be empty)
+- AGE: Add range validation (18-120)
+- OTP: Accept only numeric values
+- NAME: Add validation to reject special characters
+- PASSWORD: Enforce minimum length (8+ characters)
+- DOB: Validate date is not in the future
+- DOB: Ensure user is at least 18 years old
+- OTP: Enforce exactly 6 digits
+- CONFIRM PASSWORD: Ensure password fields match before submission
+- DOB: Use proper date picker (YYYY-MM-DD)
+- PASSWORD: Require strong password (uppercase, lowercase, numbers, special chars)
+- PHONE: Enforce exact length (10 digits)
+- NAME: Add validation to reject numeric characters
+- AGE: Implement minimum age requirement (18+)
+
+================================================================================
+END OF REPORT
+================================================================================
